@@ -14,11 +14,11 @@
     <div id="fact"></div>
 
     <script>
-      async function getFact() {
-        const res = await fetch('/api/fact');
-        const data = await res.json();
-        document.getElementById('fact').textContent = data.fact;
-      }
-    </script>
+async function getFact() {
+  const res = await fetch('/fact'); // calls frontend server, not backend directly
+  const data = await res.json();
+  document.getElementById('fact').innerText = data.fact;
+}
+</script>
   </body>
 </html>
