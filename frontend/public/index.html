@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>🚀 Space Facts Explorer</title>
+    <style>
+      body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+      button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+      #fact { margin-top: 20px; font-size: 18px; color: #333; }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 Space Facts Explorer</h1>
+    <button onclick="getFact()">Get Random Space Fact</button>
+    <div id="fact"></div>
+
+    <script>
+      async function getFact() {
+        const res = await fetch('/api/fact');
+        const data = await res.json();
+        document.getElementById('fact').textContent = data.fact;
+      }
+    </script>
+  </body>
+</html>
