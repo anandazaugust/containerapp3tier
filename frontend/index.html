@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fun Facts</title>
+</head>
+<body>
+  <h1>Random Space Fact</h1>
+  <button id="getFact">Get Fact</button>
+  <p id="fact"></p>
+
+  <script>
+    document.getElementById('getFact').addEventListener('click', async () => {
+      const res = await fetch('/facts');
+      const data = await res.json();
+      document.getElementById('fact').innerText = data.fact;
+    });
+  </script>
+</body>
+</html>

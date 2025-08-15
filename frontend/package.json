@@ -1,13 +1,12 @@
 {
-  "name": "azure-facts-frontend",
+  "name": "frontend",
   "version": "1.0.0",
-  "description": "Frontend server for Azure Facts app",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.1"
   }
 }
