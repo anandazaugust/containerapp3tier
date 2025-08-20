@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Fun Facts</title>
+  <meta charset="UTF-8">
+  <title>User List</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Random Space Fact</h1>
-  <button id="getFact">Get Fact</button>
-  <p id="fact"></p>
-
-  <script>
-    document.getElementById('getFact').addEventListener('click', async () => {
-      const res = await fetch('/facts');
-      const data = await res.json();
-      document.getElementById('fact').innerText = data.fact;
-    });
-  </script>
+  <div class="container">
+    <h1>Users</h1>
+    <ul id="user-list"></ul>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
