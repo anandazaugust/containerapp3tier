@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 // Backend API (Container App / SQL-backed API)
 const BACKEND_URL =
   process.env.BACKEND_URL ||
-  "http://backend/api/users"; // replace with your backend internal URL
+  "https://acabackend.happymushroom-d88cb2c7.uksouth.azurecontainerapps.io/api/users"; // replace with your backend internal URL
 
 // Serve static files (index.html, style.css)
 app.use(express.static(path.join(__dirname)));
