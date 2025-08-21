@@ -3,12 +3,12 @@ const path = require("path");
 const fetch = require("node-fetch");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Backend API (Container App / SQL-backed API)
 const BACKEND_URL =
   process.env.BACKEND_URL ||
-  "https://acabackend.happymushroom-d88cb2c7.uksouth.azurecontainerapps.io/api/users"; // replace with your backend internal URL
+  "https://acabackend.yellowbay-d8be9644.uksouth.azurecontainerapps.io/api/users"; // replace with your backend internal URL
 
 // Serve static files (index.html, style.css)
 app.use(express.static(path.join(__dirname)));
