@@ -1,25 +1,22 @@
 const express = require("express");
-const path = require("path");
 const sql = require("mssql");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// SQL Config (read from environment variable)
-const config = {
-  connectionString: process.env.SQL_CONNECTION,
-  options: {
-    encrypt: true // required for Azure SQL
+// Reuse SQL connection pool
+let poolPromise;
+async function getPool() {
+  if (!poolPromise) {
+    poolPromise = sql.connect(process.env.SQL_CONNECTION);
   }
-};
+  return poolPromise;
+}
 
-// Serve frontend files
-app.use(express.static(path.join(__dirname, "../frontend")));
-
-// API endpoint to fetch users
+// API endpoint
 app.get("/api/users", async (req, res) => {
   try {
-    const pool = await sql.connect(config);
+    const pool = await getPool();
     const result = await pool.request().query("SELECT * FROM Users");
     res.json(result.recordset);
   } catch (err) {
@@ -28,11 +25,10 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// Fallback route
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/index.html"));
-});
+// Optional: health check for ACA liveness probe
+app.get("/health", (req, res) => res.send("OK"));
 
+// Start server
 app.listen(PORT, () => {
-  console.log(`✅ Backend + Frontend running on http://localhost:${PORT}`);
+  console.log(`✅ Backend API running on port ${PORT}`);
 });
